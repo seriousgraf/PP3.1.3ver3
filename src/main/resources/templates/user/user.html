@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>USER</title>
+</head>
+<body>
+
+<h2>Пользовательская информация</h2>
+
+<div>
+    <th:block th:each="users : ${user}">
+    </th:block>
+</div>
+
+<table border="3">
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+
+    <tr th:each="user : ${user}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td>
+            <span th:each="role : ${user.roles}" th:text="${role.name} + '; '"></span>
+        </td>
+    </tr>
+</table>
+
+<br>
+<form th:action="@{/logout}" th:method="post">
+    <input type="submit" value="Logout">
+</form>
+
+</body>
+</html>
